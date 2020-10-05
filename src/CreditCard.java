@@ -1,26 +1,7 @@
-public class CreditCard {
+public class CreditCard extends Card {
 
-    private int amount;
-    private String cardOwner;
-
-    public CreditCard(String cardOwner, int amount) {
-        this.amount = amount;
-        this.cardOwner = cardOwner;
+    public CreditCard(String cardHoldersName, int amount) {
+        super(cardHoldersName, amount);
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
-    public String getCardOwner() {
-        return cardOwner;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public void setCardOwner(String cardOwner) {
-        this.cardOwner = cardOwner;
-    }
 }

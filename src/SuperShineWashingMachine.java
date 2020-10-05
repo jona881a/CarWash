@@ -8,6 +8,9 @@ public class SuperShineWashingMachine {
 
     }
 
+    /**
+     * @TODO lav menupunkter såsom: køb vask, se bevægelser på washkort, køb washkort, tilføj flere penge på washkort mm.
+     */
     public void menu() {
 
     }
