@@ -8,16 +8,25 @@ public class SuperShineCard {
         this.cardHolderName = cardHolderName;
     }
 
+
+    /*
+      Getters
+     */
+
     public int getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
     public String getCardHolderName() {
         return cardHolderName;
+    }
+
+    /*
+      Setters
+     */
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public void setCardHolderName(String cardHolderName) {
