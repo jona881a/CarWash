@@ -8,6 +8,8 @@ public class SuperShineWashingMachine {
 
     }
 
+    public void menu() {
 
+    }
 
 }
