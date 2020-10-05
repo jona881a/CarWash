@@ -1,0 +1,20 @@
+Denne liste er oprettet så vi nemt kan finde ud af hvem der håndtere hvilke opgaver og hvad vi skal lave.. Happy Coding :D 
+
+1. Første udkast af Use Case Descriptions
+  1.a usecases:
+    Foretag et køb af et Supershine vaskekort
+    Køb en vask med Supershine vaskekort
+
+2. Første udkast af Use Case Diagram
+  2.a Actors:
+    Owner
+    Supershine management system
+    Customer
+
+3. Første udkast af domæne model
+    Følgende bokse kunne der være:
+      Customer
+      SuperShine kort
+      Kreditkort 
+      
+
