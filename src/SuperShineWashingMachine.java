@@ -13,6 +13,13 @@ public class SuperShineWashingMachine {
      */
     public void menu() {
 
+        //purchase WashCard
+
+        //purchase Wash (If the customer has a WashCard)
+            //Select which wash (If the amount suits the wash)
+
+
+
     }
 
 }
