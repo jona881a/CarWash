@@ -1,4 +1,5 @@
 import java.time.LocalTime;
+import java.util.Calendar;
 
 public class Washes {
 
@@ -6,6 +7,7 @@ public class Washes {
     private final int STANDARD_PRICE = 80;
     private final int DELUXE_PRICE = 120;
     private final LocalTime EARLYBIRD_DISCOUNT_DEADLINE = LocalTime.of(14,00);
+    private Calendar weekDay = Calendar.getInstance();
 
     public Washes() {
 
@@ -40,9 +42,9 @@ public class Washes {
 
     public void showWashes() {
         System.out.println("Følgende vaske er tilgængelige: ");
-        System.out.printf("\n1. Økonomi: %dkr." + ECONOMY_PRICE);
-        System.out.printf("\n2. Standard: %dkr." + STANDARD_PRICE);
-        System.out.printf("\n3. De_Luxe: %dkr." + DELUXE_PRICE);
+        System.out.printf("\n1. Økonomi: %d kr.", ECONOMY_PRICE);
+        System.out.printf("\n2. Standard: %d kr.", STANDARD_PRICE);
+        System.out.printf("\n3. De_Luxe: %d kr.", DELUXE_PRICE);
 
     }
 }
