@@ -1,74 +1,65 @@
 import java.util.Scanner;
 import java.util.Random;
-import java.util.ArrayList;
 
 public class SuperShineWashingMachine {
 
-
-
-
-
+       static Scanner scan = new Scanner(System.in);
 
         public static void main(String[] args) {
-            new SuperShineWashingMachine();
 
-            Scanner scan = new Scanner(System.in);
+            boolean programIsRunning = true;
             CustomerRegister customerRegister = new CustomerRegister();
             Washes washChoice = new Washes();
-            Random randomSaldo = new Random();
+            Random randomAmount = new Random();
 
+            //tilføj personer i registeret for standard
+            customerRegister.add("Oliver" , "20 10 40 50", randomAmount.nextInt(1000) + 200);
+            customerRegister.add("Rasmus","12 34 56 78",randomAmount.nextInt(1000) + 200);
+            customerRegister.add("Jonas", "51 82 30 49", randomAmount.nextInt(1000) + 200);
 
+            int number = 0;
 
+            while (programIsRunning) {
 
-            int tal = 0;
+                showMenu();
 
-            while (true) {
+                String name;
+                String phoneNumber;
 
-                visMenu();
-
-                String navn;
-                String telefonNummer;
-
-                tal = indtastTal();
+                number = checkForCorrectInput();
                 scan.nextLine();
 
-                switch (tal) {
+                switch (number) {
+                    case 1: //Opretter bruger
 
-                    case 1:
-                        //Oprætter bruger
-                        System.out.print("\nHvem skal vi oprætte?\nNavn:");
-                        navn = scan.nextLine();
+                        System.out.print("\nHvem skal vi oprette?\nNavn:");
+                        name = scan.nextLine();
                         System.out.print("\nNummer:");
-                        telefonNummer = scan.nextLine();
-                        int saldo = 200+randomSaldo.nextInt(1000);
-                        customerRegister.add(navn,telefonNummer,saldo);
-
-
+                        phoneNumber = scan.nextLine();
+                        int amount = randomAmount.nextInt(1000) + 200;
+                        customerRegister.add(name,phoneNumber,amount);
                         break;
 
+                    case 2: //Valg af program(vask)
 
-                    case 2:
-                        //Valg af program(vask)
                         System.out.println("Hvilken vask vil du købe? ");
                         washChoice.showWashes();
-
+                        washChoice.choiceOfWash(scan.nextInt());
+                        System.out.print("\nØnsker du en kvittering? (Y/N)");
+                        scan.nextLine();
                         break;
 
+                    case 3: //Viser saldo
 
-                    case 3:
-                        //Viser saldo
                         System.out.print("Hvad er dit telefonnummer? : ");
-                        telefonNummer = scan.nextLine();
-                        System.out.println("\nDin saldo er: " + customerRegister.visSaldo(telefonNummer)); //tilføj kunde bla bla bla
+                        phoneNumber = scan.nextLine();
+                        System.out.println("\nDin saldo er: " + customerRegister.showAmount(phoneNumber));
                         System.out.println("Ønsker du at tanke op?");
-
                         break;
 
-                    case 4:
-                        //Tanker kort op
+                    case 4: //Tanker kort op
 
                         break;
-
                     default:
                         //luk programmet
                         System.exit(0);
@@ -76,36 +67,28 @@ public class SuperShineWashingMachine {
             }
         }
 
-    public SuperShineWashingMachine() {
-
-    }
-
-    /**
-     * @TODO lav menupunkter såsom: køb vask, se bevægelser på washkort, køb washkort, tilføj flere penge på washkort mm.
-     */
-    public static void visMenu() {
+    public static void showMenu() {
 
         System.out.println("\nHovedmenu - 9 afslutter programmet\n");
         System.out.println("1. Opræt bruger ");
         System.out.println("2. Vælg vask ");
         System.out.println("3. Se din saldo ");
         System.out.println("4. Tank op ");
-        System.out.print("\n5. Indtast meny tal: ");
+        System.out.print("\n5. Vælg en menu: ");
 
     }
 
-    public static int indtastTal(){
+    public static int checkForCorrectInput(){
 
-        Scanner scan = new Scanner(System.in);
+        int number;
 
-        int tal = 0;
-        while(!scan.hasNextInt()){
-            System.out.println("\nDu skal indtaste et tal");
+        while(!scan.hasNextInt()) {
+            System.err.println("\nDu skal indtaste et tal");
             System.out.println("Indtast et tal");
             scan.nextLine();
         }
-        tal = scan.nextInt();
-        return tal;
+        number = scan.nextInt();
+        return number;
     }
 
 }

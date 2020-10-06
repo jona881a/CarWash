@@ -1,9 +1,10 @@
-public class Card {
+public class WashingCard {
 
     private int amount;
     private String cardHoldersName;
 
-    public Card(String cardHoldersName, int amount) {
+
+    public WashingCard(String cardHoldersName, int amount) {
         this.amount = amount;
         this.cardHoldersName = cardHoldersName;
     }
@@ -24,4 +25,5 @@ public class Card {
     public String toString() {
         return "Cardholder: " + cardHoldersName + ", amount: " + amount;
     }
+
 }
