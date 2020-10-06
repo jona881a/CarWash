@@ -5,7 +5,7 @@ public class SuperShineWashingMachine {
     }
 
     public SuperShineWashingMachine() {
-
+        
     }
 
     /**
@@ -17,8 +17,6 @@ public class SuperShineWashingMachine {
 
         //purchase Wash (If the customer has a WashCard)
             //Select which wash (If the amount suits the wash)
-
-
 
     }
 
