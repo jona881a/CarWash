@@ -26,10 +26,18 @@ public class Customer {
         }
 
         public double getWashingCardAmount() {
-            return this.washingCardAmount;
+            return this.superShineCard.getWashingCardAmount();
         }
 
-        public void setAmount(double amount) {
+        public void deductWashingCardAmount(double amount) {
+            this.superShineCard.deduct(amount);
+        }
+
+        public void depositAmountToWashingCard(double amount) {
+            this.superShineCard.deposit(amount);
+        }
+
+        public void deductAmount(double amount) {
             this.amount -= amount;
         }
 

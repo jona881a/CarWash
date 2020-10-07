@@ -3,49 +3,56 @@ import java.util.Random;
 
 public class SuperShineWashingMachine {
 
-       static Scanner scan = new Scanner(System.in);
+        static Scanner scan = new Scanner(System.in);
+        static Random randomAmount = new Random();
+        static CustomerRegister customerRegister = new CustomerRegister();
+        static Washes washChoice = new Washes();
 
         public static void main(String[] args) {
 
             boolean programIsRunning = true;
-            CustomerRegister customerRegister = new CustomerRegister();
-            Washes washChoice = new Washes();
-            Random randomAmount = new Random();
 
             //tilføj personer i registeret for standard
             customerRegister.add("Oliver" , "30 74 36 79", randomAmount.nextInt(1000-200) + 200,0);
             customerRegister.add("Rasmus","12 34 56 78",randomAmount.nextInt(1000-200) + 200,0);
-            customerRegister.add("Jonas", "51 82 30 49", randomAmount.nextInt(1000-200) + 200,0);
+            customerRegister.add("Jonas", "51 14 72 22", randomAmount.nextInt(1000-200) + 200,0);
 
             int number = 0;
+            char yesNo;
+            String phoneNumber = "";
+
+            System.out.println("Er du oprettet i SuperShine CarWash systemet? (Y/N)");
+            yesNo = scan.nextLine().charAt(0);
+            if(yesNo == 'Y') {
+                System.out.print("\nSkriv dit telefonnummer som identifikation: ");
+                phoneNumber = scan.nextLine();
+
+            } else if(yesNo == 'N') {
+                createUser();
+                System.out.print("\nSkriv dit telefonnummer som identifikation: ");
+                phoneNumber = scan.nextLine();
+            }
+
+            Customer customer = customerRegister.returnCustomer(phoneNumber);
 
             while (programIsRunning) {
 
-                showMenu();
+                //Fields
 
-                String name;
-                String phoneNumber;
-                String reciept;
                 int num;
                 double washPrice;
+
+                showMenu();
 
                 number = checkForCorrectInput();
                 scan.nextLine();
 
                 switch (number) {
                     case 1: //Opretter bruger
-
-                        System.out.print("\nHvem skal vi oprette?\nNavn:");
-                        name = scan.nextLine();
-                        System.out.print("\nNummer:");
-                        phoneNumber = scan.nextLine();
-                        int amount = randomAmount.nextInt(1000-200) + 200;
-                        customerRegister.add(name,phoneNumber,amount,0);
+                        createUser();
                         break;
 
                     case 2: //Valg af program(vask)
-                        System.out.println("Hvad er dit telefonummer? : ");
-                        phoneNumber = scan.nextLine();
                         System.out.println("Hvilken vask vil du købe? ");
                         washChoice.showWashes();
                         washPrice = washChoice.choiceOfWash(scan.nextInt());
@@ -55,36 +62,33 @@ public class SuperShineWashingMachine {
                                 scan.nextLine();
                             }
                         } else {
-                            //fineCar.deduct(washPrice); //trækker penge fra vaskekortet
+                            customer.deductWashingCardAmount(washPrice);
                         }
+
                         System.out.print("\nØnsker du en kvittering? (Y/N)");
-                        reciept = scan.nextLine();
-                        if(reciept.equals("Y")) {
+                        yesNo = scan.nextLine().charAt(0);
+                        if(yesNo == 'Y') {
                             washChoice.printReciept();
-                        } else if(reciept.equals("N")) {
+                        } else if(yesNo == 'N') {
                             continue;
                         }
-                        scan.nextLine();
                         break;
 
                     case 3: //Viser saldo
 
-                        System.out.print("Hvad er dit telefonnummer? : ");
-                        phoneNumber = scan.nextLine();
-                        System.out.println("\nDin saldo er: " + customerRegister.returnCustomer(phoneNumber).getAmount() + " kr");
-                        System.out.println("Din vaskekort saldo er: " + customerRegister.returnCustomer(phoneNumber).getWashingCardAmount() + " kr");
+                        System.out.println("\nDin saldo er: " + customer.getAmount() + " kr");
+                        System.out.println("Din vaskekort saldo er: " + customer.getWashingCardAmount() + " kr");
                         break;
 
                     case 4: //Tanker kort op
 
-                        System.out.println("Hvad er dit nummer?");
-                        phoneNumber = scan.nextLine();
                         System.out.println("Hvilket beløb ønsker du at tanke op?");
-                        System.out.println("Vaskekort saldo: " + customerRegister.returnCustomer(phoneNumber).getWashingCardAmount());
+                        System.out.println("Vaskekort saldo: " + customer.getWashingCardAmount());
                         System.out.print("\nBeløb: ");
                         num = scan.nextInt();
-                        customerRegister.returnCustomer(phoneNumber).getWashingCardAmount();
-                        customerRegister.returnCustomer(phoneNumber).setAmount(num);
+                        //Vi skal have tilføjet til vaskekortet
+                        customer.depositAmountToWashingCard(num);
+                        customer.deductAmount(num);
                         break;
 
                     case 5: //hvis alle brugere i programmet
@@ -120,6 +124,19 @@ public class SuperShineWashingMachine {
         }
         number = scan.nextInt();
         return number;
+    }
+
+    public static void createUser() {
+        String name;
+        String phoneNumber;
+
+        System.out.print("\nIndtast dit Navn: ");
+        name = scan.nextLine();
+        System.out.printf("\nIndtast dit nummer");
+        phoneNumber = scan.nextLine();
+
+        int amount = randomAmount.nextInt(1000-200) + 200;
+        customerRegister.add(name,phoneNumber,amount,0);
     }
 
 }
