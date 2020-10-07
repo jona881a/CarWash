@@ -1,29 +1,36 @@
 public class WashingCard {
 
-    private int amount;
+    private int washingCardAmount;
     private String cardHoldersName;
 
 
-    public WashingCard(String cardHoldersName, int amount) {
-        this.amount = amount;
+    public WashingCard(String cardHoldersName, int washingCardAmount) {
+        this.washingCardAmount = washingCardAmount;
         this.cardHoldersName = cardHoldersName;
     }
 
-    public int getAmount() {
-        return amount;
+
+    public WashingCard(){
+
+    }
+
+    public int getWashingCardAmount() {
+
+
+        return washingCardAmount;
     }
 
     public void deposit(int amount) {
-        this.amount += amount;
+        this.washingCardAmount += washingCardAmount;
     }
 
     public void deduct(int amount) {
-        this.amount -= amount;
+        this.washingCardAmount -= washingCardAmount;
     }
 
     @Override
     public String toString() {
-        return "Cardholder: " + cardHoldersName + ", amount: " + amount;
+        return "Cardholder: " + cardHoldersName + ", amount: " + washingCardAmount;
     }
 
 }

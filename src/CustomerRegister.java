@@ -4,12 +4,12 @@ public class CustomerRegister {
 
     public ArrayList<Customer> customers = new ArrayList<Customer>();
 
-    public void add(String name, String number, int amount){
-        Customer customer = new Customer(name,number,amount);
+    public void add(String name, String number, int amount,int washingCardAmount){
+        Customer customer = new Customer(name,number,amount,washingCardAmount);
         this.customers.add(customer);
 
     }
-    public int showAmount(String phoneNumber){
+    public static int showAmount(String phoneNumber){
 
         //Søg efter navn
         for (Customer customer : customers){

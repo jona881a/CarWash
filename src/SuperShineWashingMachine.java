@@ -10,12 +10,13 @@ public class SuperShineWashingMachine {
             boolean programIsRunning = true;
             CustomerRegister customerRegister = new CustomerRegister();
             Washes washChoice = new Washes();
+            WashingCard fineCar = new WashingCard();
             Random randomAmount = new Random();
 
             //tilføj personer i registeret for standard
-            customerRegister.add("Oliver" , "20 10 40 50", randomAmount.nextInt(1000) + 200);
-            customerRegister.add("Rasmus","12 34 56 78",randomAmount.nextInt(1000) + 200);
-            customerRegister.add("Jonas", "51 82 30 49", randomAmount.nextInt(1000) + 200);
+            customerRegister.add("Oliver" , "30 74 36 79", randomAmount.nextInt(1000-200) + 200,0);
+            customerRegister.add("Rasmus","12 34 56 78",randomAmount.nextInt(1000-200) + 200,0);
+            customerRegister.add("Jonas", "51 82 30 49", randomAmount.nextInt(1000-200) + 200,0);
 
             int number = 0;
 
@@ -36,8 +37,8 @@ public class SuperShineWashingMachine {
                         name = scan.nextLine();
                         System.out.print("\nNummer:");
                         phoneNumber = scan.nextLine();
-                        int amount = randomAmount.nextInt(1000) + 200;
-                        customerRegister.add(name,phoneNumber,amount);
+                        int amount = randomAmount.nextInt(1000-200) + 200;
+                        customerRegister.add(name,phoneNumber,amount,0);
                         break;
 
                     case 2: //Valg af program(vask)
@@ -53,13 +54,21 @@ public class SuperShineWashingMachine {
 
                         System.out.print("Hvad er dit telefonnummer? : ");
                         phoneNumber = scan.nextLine();
-                        System.out.println("\nDin saldo er: " + customerRegister.showAmount(phoneNumber));
-                        System.out.println("Ønsker du at tanke op?");
+                        System.out.println("\nDin saldo er: " + customerRegister.showAmount(phoneNumber) + " kr");
                         break;
 
                     case 4: //Tanker kort op
 
+                        System.out.println("Hvad er dit nummer?");
+                        phoneNumber = scan.nextLine();
+                        System.out.println("Hvilket beløb ønsker du at tanke op?");
+                        System.out.println("Vaskekort saldo: " + fineCar.getWashingCardAmount());
+                        System.out.print("\nBeløb: ");
+                        fineCar.deposit(scan.nextInt());
+                        CustomerRegister.showAmount(phoneNumber) -= fineCar.getWashingCardAmount();
+
                         break;
+
                     default:
                         //luk programmet
                         System.exit(0);
