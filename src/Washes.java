@@ -12,15 +12,20 @@ public class Washes {
     private final LocalTime EARLYBIRD_DISCOUNT_DEADLINE = LocalTime.of(14,00);
     private Calendar weekDay = Calendar.getInstance();
 
-    public void choiceOfWash(int choice) {
-        if(choice == 1) {
-            buyEconomyWash();
+    public double choiceOfWash(int choice) {
 
-        } else if(choice == 2) {
-            buyStanderdWash();
+        switch(choice) {
+            case 1:
+                return buyEconomyWash();
 
-        } else if(choice == 3) {
-            buyDeLuxeWash();
+            case 2:
+                return buyStanderdWash();
+
+            case 3:
+                return buyDeLuxeWash();
+
+            default:
+                return 0;
         }
     }
 
@@ -57,8 +62,8 @@ public class Washes {
     }
 
     public void showWashes() {
-        System.out.println("Følgende vaske er tilgængelige: ");
-        System.out.printf("\n1. Økonomi: %d kr.", ECONOMY_PRICE);
+        System.out.println("\nFølgende vaske er tilgængelige: ");
+        System.out.printf("1. Økonomi: %d kr.", ECONOMY_PRICE);
         System.out.printf("\n2. Standard: %d kr.", STANDARD_PRICE);
         System.out.printf("\n3. De_Luxe: %d kr.", DELUXE_PRICE);
 

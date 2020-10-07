@@ -19,7 +19,7 @@ public class WashingCard {
         this.washingCardAmount += amount;
     }
 
-    public void deduct(int amount) {
+    public void deduct(double amount) {
         this.washingCardAmount -= amount;
     }
 

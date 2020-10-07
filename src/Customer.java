@@ -2,8 +2,8 @@ public class Customer {
 
         private String name;
         private String number;
-        private int amount;
-        private int washingCardAmount;
+        private double amount;
+        private double washingCardAmount;
         private WashingCard superShineCard = new WashingCard();
 
         public Customer(String name, String number, int amount, int washingCardAmount){
@@ -21,11 +21,15 @@ public class Customer {
         public String getNumber(){
             return this.number;
         }
-        public int getAmount(){
+        public double getAmount(){
             return this.amount;
         }
 
-        public void setAmount(int amount) {
+        public double getWashingCardAmount() {
+            return this.washingCardAmount;
+        }
+
+        public void setAmount(double amount) {
             this.amount -= amount;
         }
 

@@ -10,7 +10,6 @@ public class SuperShineWashingMachine {
             boolean programIsRunning = true;
             CustomerRegister customerRegister = new CustomerRegister();
             Washes washChoice = new Washes();
-            WashingCard fineCar = new WashingCard();
             Random randomAmount = new Random();
 
             //tilføj personer i registeret for standard
@@ -26,7 +25,9 @@ public class SuperShineWashingMachine {
 
                 String name;
                 String phoneNumber;
+                String reciept;
                 int num;
+                double washPrice;
 
                 number = checkForCorrectInput();
                 scan.nextLine();
@@ -43,11 +44,26 @@ public class SuperShineWashingMachine {
                         break;
 
                     case 2: //Valg af program(vask)
-
+                        System.out.println("Hvad er dit telefonummer? : ");
+                        phoneNumber = scan.nextLine();
                         System.out.println("Hvilken vask vil du købe? ");
                         washChoice.showWashes();
-                        washChoice.choiceOfWash(scan.nextInt());
+                        washPrice = washChoice.choiceOfWash(scan.nextInt());
+                        if(washPrice == 0) {
+                            while(true) {
+                                System.out.println("Du har valgt et tal der ikke stemmer med vaskene, vælg igen");
+                                scan.nextLine();
+                            }
+                        } else {
+                            //fineCar.deduct(washPrice); //trækker penge fra vaskekortet
+                        }
                         System.out.print("\nØnsker du en kvittering? (Y/N)");
+                        reciept = scan.nextLine();
+                        if(reciept.equals("Y")) {
+                            washChoice.printReciept();
+                        } else if(reciept.equals("N")) {
+                            continue;
+                        }
                         scan.nextLine();
                         break;
 
@@ -55,7 +71,8 @@ public class SuperShineWashingMachine {
 
                         System.out.print("Hvad er dit telefonnummer? : ");
                         phoneNumber = scan.nextLine();
-                        System.out.println("\nDin saldo er: " + customerRegister.showAmount(phoneNumber) + " kr");
+                        System.out.println("\nDin saldo er: " + customerRegister.returnCustomer(phoneNumber).getAmount() + " kr");
+                        System.out.println("Din vaskekort saldo er: " + customerRegister.returnCustomer(phoneNumber).getWashingCardAmount() + " kr");
                         break;
 
                     case 4: //Tanker kort op
@@ -63,13 +80,13 @@ public class SuperShineWashingMachine {
                         System.out.println("Hvad er dit nummer?");
                         phoneNumber = scan.nextLine();
                         System.out.println("Hvilket beløb ønsker du at tanke op?");
-                        System.out.println("Vaskekort saldo: " + fineCar.getWashingCardAmount());
+                        System.out.println("Vaskekort saldo: " + customerRegister.returnCustomer(phoneNumber).getWashingCardAmount());
                         System.out.print("\nBeløb: ");
                         num = scan.nextInt();
-                        fineCar.deposit(num);
+                        customerRegister.returnCustomer(phoneNumber).getWashingCardAmount();
                         customerRegister.returnCustomer(phoneNumber).setAmount(num);
-
                         break;
+
                     case 5: //hvis alle brugere i programmet
                         customerRegister.printAll();
                         break;
