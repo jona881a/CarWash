@@ -9,23 +9,18 @@ public class WashingCard {
         this.cardHoldersName = cardHoldersName;
     }
 
-
-    public WashingCard(){
-
-    }
+    public WashingCard() {}
 
     public int getWashingCardAmount() {
-
-
         return washingCardAmount;
     }
 
     public void deposit(int amount) {
-        this.washingCardAmount += washingCardAmount;
+        this.washingCardAmount += amount;
     }
 
     public void deduct(int amount) {
-        this.washingCardAmount -= washingCardAmount;
+        this.washingCardAmount -= amount;
     }
 
     @Override

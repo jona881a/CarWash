@@ -46,7 +46,7 @@ public class Washes {
 
     public double checkEarlyBirdDiscount(int washPrice) {
         //if the time and date matches earlybird discount we include a 20% discounts
-        if(LocalTime.now() != EARLYBIRD_DISCOUNT_DEADLINE && !weekDay.equals("lørdag") && !weekDay.equals("søndag")) {
+        if(LocalTime.now() != EARLYBIRD_DISCOUNT_DEADLINE && !weekDay.equals("SATURDAY") && !weekDay.equals("SUNDAY")) {
             return washPrice * 0.2;
         }
         return washPrice;

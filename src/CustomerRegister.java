@@ -9,7 +9,7 @@ public class CustomerRegister {
         this.customers.add(customer);
 
     }
-    public static int showAmount(String phoneNumber){
+    public int showAmount(String phoneNumber){
 
         //Søg efter navn
         for (Customer customer : customers){
@@ -18,5 +18,20 @@ public class CustomerRegister {
             }
         }
         return 0;
+    }
+
+    public Customer returnCustomer(String phoneNumber){
+        for (int i = 0; i<customers.size(); i++) {
+            if (phoneNumber.compareTo(customers.get(i).getNumber())==0){
+                return customers.get(i);
+            }
+        }
+        return customers.get(0);
+    }
+
+    public void printAll() {
+        for (Customer customer: customers) {
+            System.out.println(customer.getName() + " " + customer.getNumber() + ", " + customer.getAmount() + " kr.");
+        }
     }
 }
