@@ -66,6 +66,7 @@ public class Washes {
         System.out.printf("1. Økonomi: %d kr.", ECONOMY_PRICE);
         System.out.printf("\n2. Standard: %d kr.", STANDARD_PRICE);
         System.out.printf("\n3. De_Luxe: %d kr.", DELUXE_PRICE);
+        System.out.print("\nVælg vask: ");
 
     }
 }
