@@ -44,11 +44,6 @@ public class Washes {
         return DELUXE_PRICE;
     }
 
-    public void printReciept() {
-        System.out.println("SUPERSHINE WASHING");
-        System.out.println("------------------");
-    }
-
     public double checkEarlyBirdDiscount(int washPrice) {
         //if the time and date matches earlybird discount we include a 20% discounts
         if(LocalTime.now() != EARLYBIRD_DISCOUNT_DEADLINE && !weekDay.equals("SATURDAY") && !weekDay.equals("SUNDAY")) {
@@ -58,7 +53,28 @@ public class Washes {
     }
 
     public void getStatistics() {
+        System.out.println("Antal Økonomivaske solgt: " + economyWashesBought);
+        System.out.println("Antal Standardvaske solgt: " + standardWashesBought);
+        System.out.println("Antal De Luxe vaske solgt: " + deLuxeWashesBought);
+    }
 
+    public static void printReciept(int choice, double washPrice) {
+        String wash = "";
+
+        switch(choice) {
+            case 1:
+                wash = "ØKONOMIVASK";
+            case 2:
+                wash = "STANDARDVASK";
+            case 3:
+                wash = "DELUXE VASK";
+        }
+
+        System.out.println("\nSUPERSHINE WASHING");
+        System.out.println("------------------");
+        System.out.printf("VASK: %-2s \npris: %.2f kr.", wash, washPrice);
+        System.out.println("\n");
+        System.out.println("------------------");
     }
 
     public void showWashes() {

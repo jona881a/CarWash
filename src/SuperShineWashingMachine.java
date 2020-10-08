@@ -18,7 +18,7 @@ public class SuperShineWashingMachine {
             customerRegister.add("Jonas", "51 14 72 22", randomAmount.nextInt(1000-200) + 200,0);
 
             int number = 0;
-            char yesNo;
+            char yesNo; //Variable der anvendes når brugeren bliver spurgt om 2 valgmuligheder
             String phoneNumber = "";
 
             System.out.println("Er du oprettet i SuperShine CarWash systemet? (Y/N)");
@@ -26,6 +26,16 @@ public class SuperShineWashingMachine {
             if(yesNo == 'Y') {
                 System.out.print("\nSkriv dit telefonnummer som identifikation: ");
                 phoneNumber = scan.nextLine();
+                if(customerRegister.returnCustomer(phoneNumber) == null) {
+                    System.err.println("Der eksistere ikke en bruger med det indtastede telefonnummer");
+                    System.err.print("Ønskes der at oprettes en bruger? (Y/N)");
+                    yesNo = scan.nextLine().charAt(0);
+                    if(yesNo == 'Y'){
+                        createUser();
+                    } else if(yesNo == 'N') {
+                        System.exit(0);
+                    }
+                }
 
             } else if(yesNo == 'N') {
                 createUser();
@@ -53,9 +63,12 @@ public class SuperShineWashingMachine {
                         break;
 
                     case 2: //Valg af program(vask)
+                        int choice;
                         System.out.println("Hvilken vask vil du købe? ");
                         washChoice.showWashes();
-                        washPrice = washChoice.choiceOfWash(scan.nextInt());
+                        washPrice = checkForCorrectInput(); //tjek for korrekt input
+                        choice = scan.nextInt();
+                        washPrice = washChoice.choiceOfWash(choice);
                         if(washPrice == 0) {
                             while(true) {
                                 System.out.println("Du har valgt et tal der ikke stemmer med vaskene, vælg igen");
@@ -66,9 +79,10 @@ public class SuperShineWashingMachine {
                         }
 
                         System.out.print("\nØnsker du en kvittering? (Y/N)");
+                        scan.nextLine();
                         yesNo = scan.nextLine().charAt(0);
                         if(yesNo == 'Y') {
-                            washChoice.printReciept();
+                            washChoice.printReciept(choice, washPrice);
                         } else if(yesNo == 'N') {
                             continue;
                         }

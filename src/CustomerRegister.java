@@ -9,16 +9,6 @@ public class CustomerRegister {
         this.customers.add(customer);
 
     }
-    public double showAmount(String phoneNumber){
-
-        //Søg efter navn
-        for (Customer customer : customers){
-            if (phoneNumber.compareTo(customer.getNumber())==0){
-                return customer.getAmount();
-            }
-        }
-        return 0;
-    }
 
     public Customer returnCustomer(String phoneNumber){
         for (int i = 0; i<customers.size(); i++) {
@@ -26,7 +16,7 @@ public class CustomerRegister {
                 return customers.get(i);
             }
         }
-        return customers.get(0);
+        return null;
     }
 
     public void printAll() {
