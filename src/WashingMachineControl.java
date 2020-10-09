@@ -1,12 +1,12 @@
 import java.util.Scanner;
 import java.util.Random;
 
-public class SuperShineWashingMachine {
+public class WashingMachineControl {
 
         static Scanner scan = new Scanner(System.in);
         static Random randomAmount = new Random();
         static CustomerRegister customerRegister = new CustomerRegister();
-        static Washes washChoice = new Washes();
+        static WashMashine washingMashineChoices = new WashMashine();
 
         public static void main(String[] args) {
 
@@ -65,10 +65,10 @@ public class SuperShineWashingMachine {
                     case 2: //Valg af program(vask)
                         int choice;
                         System.out.println("Hvilken vask vil du købe? ");
-                        washChoice.showWashes();
+                        washingMashineChoices.showWashes();
                         washPrice = checkForCorrectInput(); //tjek for korrekt input
                         choice = scan.nextInt();
-                        washPrice = washChoice.choiceOfWash(choice);
+                        washPrice = washingMashineChoices.choiceOfWash(choice);
                         if(washPrice == 0) {
                             while(true) {
                                 System.out.println("Du har valgt et tal der ikke stemmer med vaskene, vælg igen");
@@ -82,7 +82,7 @@ public class SuperShineWashingMachine {
                         scan.nextLine();
                         yesNo = scan.nextLine().charAt(0);
                         if(yesNo == 'Y') {
-                            washChoice.printReciept(choice, washPrice);
+                            washingMashineChoices.printReciept(choice, washPrice);
                         } else if(yesNo == 'N') {
                             continue;
                         }

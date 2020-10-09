@@ -1,7 +1,7 @@
 import java.time.LocalTime;
 import java.util.Calendar;
 
-public class Washes {
+public class WashMashine {
 
     private final int ECONOMY_PRICE = 50;
     private final int STANDARD_PRICE = 80;
