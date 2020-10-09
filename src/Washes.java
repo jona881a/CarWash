@@ -1,7 +1,7 @@
 import java.time.LocalTime;
 import java.util.Calendar;
 
-public class WashMashine {
+public class Washes {
 
     private final int ECONOMY_PRICE = 50;
     private final int STANDARD_PRICE = 80;
@@ -47,7 +47,7 @@ public class WashMashine {
     public double checkEarlyBirdDiscount(int washPrice) {
         //if the time and date matches earlybird discount we include a 20% discounts
         if(LocalTime.now() != EARLYBIRD_DISCOUNT_DEADLINE && !weekDay.equals("SATURDAY") && !weekDay.equals("SUNDAY")) {
-            return washPrice * 0.2;
+            return washPrice * 0.8;
         }
         return washPrice;
     }
@@ -58,7 +58,7 @@ public class WashMashine {
         System.out.println("Antal De Luxe vaske solgt: " + deLuxeWashesBought);
     }
 
-    public static void printReciept(int choice, double washPrice) {
+    public void printReciept(int choice, double washPrice) {
         String wash = "";
 
         switch(choice) {

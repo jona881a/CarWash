@@ -1,12 +1,12 @@
 import java.util.Scanner;
 import java.util.Random;
 
-public class WashingMachineControl {
+public class SuperShineWashingMachine {
 
         static Scanner scan = new Scanner(System.in);
         static Random randomAmount = new Random();
         static CustomerRegister customerRegister = new CustomerRegister();
-        static WashMashine washingMashineChoices = new WashMashine();
+        static Washes washChoice = new Washes();
 
         public static void main(String[] args) {
 
@@ -65,10 +65,10 @@ public class WashingMachineControl {
                     case 2: //Valg af program(vask)
                         int choice;
                         System.out.println("Hvilken vask vil du købe? ");
-                        washingMashineChoices.showWashes();
+                        washChoice.showWashes();
                         washPrice = checkForCorrectInput(); //tjek for korrekt input
                         choice = scan.nextInt();
-                        washPrice = washingMashineChoices.choiceOfWash(choice);
+                        washPrice = washChoice.choiceOfWash(choice);
                         if(washPrice == 0) {
                             while(true) {
                                 System.out.println("Du har valgt et tal der ikke stemmer med vaskene, vælg igen");
@@ -82,7 +82,7 @@ public class WashingMachineControl {
                         scan.nextLine();
                         yesNo = scan.nextLine().charAt(0);
                         if(yesNo == 'Y') {
-                            washingMashineChoices.printReciept(choice, washPrice);
+                            washChoice.printReciept(choice, washPrice);
                         } else if(yesNo == 'N') {
                             continue;
                         }
@@ -118,7 +118,7 @@ public class WashingMachineControl {
     public static void showMenu() {
 
         System.out.println("\nHovedmenu - 9 afslutter programmet\n");
-        System.out.println("1. Opræt bruger ");
+        System.out.println("1. Opret bruger ");
         System.out.println("2. Vælg vask ");
         System.out.println("3. Se din saldo ");
         System.out.println("4. Tank op ");
